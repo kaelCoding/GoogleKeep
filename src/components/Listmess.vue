@@ -25,10 +25,8 @@ const mess = ref({
   note: ""
 })
 
-let count = ref(0)
 const createMess = () => {
   messages.value.push({
-    id: count.value++,
     title: mess.value.title,
     note: mess.value.note
   })
@@ -36,11 +34,10 @@ const createMess = () => {
   saveData("messages", messages)
 }
 
-const addMessTrash = (elm) => {
-  deleteMessage(elm, 'messages', messages)
+const addMessTrash = (elm, index) => {
+  deleteMessage(index, 'messages', messages)
   
   messagesTrash.value.push({
-    id: elm.id,
     title: elm.title,
     note: elm.note
   })
@@ -63,10 +60,9 @@ const addMessTrash = (elm) => {
     </div>
 
     <div class="container-message">
-      <Message v-for="message of messages" 
-        :key="message.id" 
+      <Message v-for="(message, index) of messages" 
         :message="message" 
-        @deleteMess="addMessTrash(message)"/>
+        @deleteMess="addMessTrash(message, index)"/>
     </div>
   </div>
 </template>

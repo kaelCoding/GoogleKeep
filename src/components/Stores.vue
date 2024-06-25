@@ -20,11 +20,8 @@ export const getData = (key, array) => {
   }
 }
 
-export const deleteMessage = (elm, key, array) => {
-    console.log((array))
-    const idMess = array.value.findIndex(mess => mess == elm)
-    array.value.splice(idMess, 1)
-
+export const deleteMessage = (index, key, array) => {
+    array.value.splice(index, 1)
     saveData(key, array)
 }
 </script>

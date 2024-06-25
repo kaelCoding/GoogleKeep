@@ -2,8 +2,8 @@
 import { messagesTrash, deleteMessage, saveData } from "./Stores.vue"
 import Message from "./Message.vue";
 
-const deleteMessTrash = (elm) => {
-    deleteMessage(elm, 'messagesTrash', messagesTrash)
+const deleteMessTrash = (index) => {
+    deleteMessage(index, 'messagesTrash', messagesTrash)
 }
 
 const clearMessTrash = () => {
@@ -21,10 +21,9 @@ const clearMessTrash = () => {
             <button @click="clearMessTrash">Dọn sạch thùng rác</button>
         </div>
         <div class="container">
-            <Message v-for="mess of messagesTrash" 
-                :key="mess.id" 
+            <Message v-for="(mess, index) of messagesTrash" 
                 :message="mess"
-                @deleteMess="deleteMessTrash(mess)"/>
+                @deleteMess="deleteMessTrash(index)"/>
         </div>
     </div>
 </template>
